@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {FilterValuesType, TaskType} from "./App";
 
 type TodoListPropsType = {
@@ -25,6 +25,16 @@ const TodoList = (props: TodoListPropsType) => {
         props.addTask(title)
         setTitle("")
     }
+    const onKeyPressAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            addTask()
+        }
+    }
+    const onClickChangeTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    const onClickSetAllFilter = () => props.changeFilter("all")
+    const onClickSetActiveFilter = () => props.changeFilter("active")
+    const onClickSetCompletedFilter = () => props.changeFilter("completed")
+
 
     const tasksElements = props.tasks.map(taskList)
 
@@ -34,13 +44,8 @@ const TodoList = (props: TodoListPropsType) => {
             <div>
                 <input
                     value={title}
-                    onChange={(e) => setTitle(e.currentTarget.value)}
-                    onKeyPress={(e) => {
-                        if (e.key === "Enter") {
-                            addTask()
-                        }
-                    }
-                    }
+                    onChange={onClickChangeTitle}
+                    onKeyPress={onKeyPressAddTask}
                 />
                 <button onClick={addTask}>+</button>
             </div>
@@ -48,9 +53,9 @@ const TodoList = (props: TodoListPropsType) => {
                 {tasksElements}
             </ul>
             <div>
-                <button onClick={() => props.changeFilter("all")}>All</button>
-                <button onClick={() => props.changeFilter("active")}>Active</button>
-                <button onClick={() => props.changeFilter("completed")}>Completed</button>
+                <button onClick={onClickSetAllFilter}>All</button>
+                <button onClick={onClickSetActiveFilter}>Active</button>
+                <button onClick={onClickSetCompletedFilter}>Completed</button>
             </div>
         </div>
     )

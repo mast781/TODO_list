@@ -34,8 +34,11 @@ function App() {
 
     const addTask = (title: string) => {
         if (title) {
-            setTasks([{id: v1(), title: title, isDone: false}, ...tasks])
+            setTasks([{id: v1(), title, isDone: false}, ...tasks])
         }
+       /* if (title) {
+            setTasks([{id: v1(), title: title, isDone: false}, ...tasks])
+        }*/
 
         /*const newTask: TaskType = {
             id: v1(),
