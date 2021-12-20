@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6044132-9981-4c18-ae39-8886d8c5b908" name="Changes" comment="" />
+    <list default="true" id="c6044132-9981-4c18-ae39-8886d8c5b908" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/TodoList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../src/TodoList.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="21rpqSU6Y4f2J3UBc4remTE2Rxu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -69,6 +76,7 @@
       <workItem from="1639067424104" duration="605000" />
       <workItem from="1639336831603" duration="36000" />
       <workItem from="1639336958103" duration="122000" />
+      <workItem from="1640011934866" duration="20000" />
     </task>
     <servers />
   </component>

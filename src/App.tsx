@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 
@@ -8,32 +8,47 @@ export type TaskType = {
     isDone: boolean
 }
 
-// C-R-UD
-function App() {
-    //BLL:
-    const todoListTitle_1: string = "What to learn"
-    const todoListTitle_2: string = "What to buy"
-    const tasks_1: Array<TaskType> = [
-        {id: 1, title: "HTML", isDone: true},
-        {id: 2, title: "CSS", isDone: true},
-        {id: 3, title: "JS/TS", isDone: true},
-    ]
+export type FilterValuesType = "all" | "active" | "completed"
 
-    const tasks_2: Array<TaskType> = [
-        {id: 4, title: "CHAMPAGNE", isDone: true},
-        {id: 5, title: "BEER", isDone: true},
-        {id: 6, title: "FISH", isDone: true},
-    ]
-    //UI:
+// C-R-UD (create, read, update, delete)
+function App() {
+    //BLL (business logic layer) (data):
+    const todoListTitle: string = "What to learn"
+    const [filter, setFilter] = useState<FilterValuesType>("all")
+    const [tasks, setTasks] =  useState<Array<TaskType>>([
+                    {id: 1, title: "HTML", isDone: true},
+                    {id: 2, title: "CSS", isDone: true},
+                    {id: 3, title: "JS/TS", isDone: false},
+                    {id: 4, title: "React", isDone: true},
+                    {id: 5, title: "Redux", isDone: false},
+                ])
+
+
+    const changeFilter = (filter:FilterValuesType) => setFilter(filter)
+    const removeTask = (id: number) => {
+        setTasks(tasks.filter(t => t.id !== id))
+    }
+
+    const getTasksForRender = () => {
+        switch (filter) {
+            case "completed":
+                return tasks.filter(t => t.isDone)
+            case "active":
+                return tasks.filter(t => !t.isDone)
+            default:
+                return tasks
+        }
+    }
+
+    //UI (user interface):
     return (
         <div className="App">
             <TodoList
-                title={todoListTitle_1}
-                tasks={tasks_1}
-            />
-            <TodoList
-                title={todoListTitle_2}
-                tasks={tasks_2}
+                filter={filter}
+                title={todoListTitle}
+                tasks={getTasksForRender()}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
             />
         </div>
     )
