@@ -33,6 +33,8 @@ const TodoList = (props: TodoListPropsType) => {
         const trimmedTitle = title.trim()
         if (trimmedTitle) {
             props.addTask(title)
+        } else {
+            setError(true)
         }
         setTitle("")
     }
@@ -42,7 +44,10 @@ const TodoList = (props: TodoListPropsType) => {
             addTask()
         }
     }
-    const onClickChangeTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+        setError(false)
+    }
     const onClickSetAllFilter = () => props.changeFilter("all")
     const onClickSetActiveFilter = () => props.changeFilter("active")
     const onClickSetCompletedFilter = () => props.changeFilter("completed")
@@ -55,16 +60,30 @@ const TodoList = (props: TodoListPropsType) => {
 
     const tasksElements = props.tasks.map(taskList)
 
+    // const errorMessage = error && <div>Title is required!</div>
+
+    const errorStyle = {
+        /*backgroundColor: "red",*/
+        color: "red",
+        /*fontWeight: "bold",*/
+    }
+
+    const errorMessage = error
+        ? <div style={errorStyle}>Title is required!</div>
+        : <div>Enter task title!</div>
+
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
                 <input
+                    className={error ? "error" : ""}
                     value={title}
-                    onChange={onClickChangeTitle}
+                    onChange={onChangeSetTitle}
                     onKeyPress={onKeyPressAddTask}
                 />
                 <button onClick={addTask}>+</button>
+                {errorMessage}
             </div>
             <ul>
                 {tasksElements}

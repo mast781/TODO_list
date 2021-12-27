@@ -1,22 +1,22 @@
 .App {
-  padding: 30px;
-  display: flex;
+    padding: 30px;
+    display: flex;
 }
 
 .App > div {
-  margin-right: 50px;
+    margin-right: 50px;
 }
 
 .active-filter {
-  background-color: cornflowerblue;
+    background-color: cornflowerblue;
 }
 
 .is-done {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 .error {
-  border: 2px solid red;
-  outline: none;
-  background-color: firebrick;
+    border: 2px solid red;
+    outline: none;
+    background-color: rgba(161, 26, 26, 0.3);
 }
