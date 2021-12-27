@@ -33,9 +33,9 @@ function App() {
     }
 
     const addTask = (title: string) => {
-        if (title) {
+        //if (title) {
             setTasks([{id: v1(), title, isDone: false}, ...tasks])
-        }
+        //}
        /* if (title) {
             setTasks([{id: v1(), title: title, isDone: false}, ...tasks])
         }*/
@@ -49,6 +49,14 @@ function App() {
         // copyState.unshift(newTask)
         setTasks(copyState) // setTasks([newTask, ...tasks])*/
     }
+    const changeTaskStatus = (id: string, isDone: boolean) => {
+        setTasks(tasks.map(t => t.id === id ? {...t, isDone} : t))
+    }
+    // если имя и свойство в объекте совпадают, то можно написать один раз
+      // то есть вместо isDone: isDone пишем просто isDone
+    /*const changeTaskStatus = (id: string, newIsDoneValue: boolean) => {
+        setTasks(tasks.map(t => t.id === id ? {...t, isDone: newIsDoneValue} : t))
+    }*/
 
     const getTasksForRender = () => {
         switch (filter) {
@@ -71,6 +79,7 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
+                changeTaskStatus={changeTaskStatus}
             />
         </div>
     )
